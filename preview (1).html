@@ -1,0 +1,2677 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07152f">
+<title>KÖKTÜRK — Sözlük</title>
+
+<style>
+:root{
+  --c1:#07152f;
+  --c2:#d7b86c;
+  --c3:#f2dda5;
+
+  --page1:#e8edf5;
+  --page2:#f2dda5;
+
+  --text:#07152f;
+  --muted:#526077;
+  --line:rgba(7,21,47,.15);
+
+  --header1:#040b1d;
+  --header2:#163967;
+
+  --shadow:0 12px 35px rgba(7,21,47,.14);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+
+body{
+  background:var(--page2);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(
+    135deg,
+    var(--header1),
+    var(--c1) 50%,
+    var(--header2)
+  );
+  color:#fff;
+  padding:20px 14px 22px;
+  border-bottom:3px solid var(--c2);
+  box-shadow:0 8px 25px rgba(0,0,0,.18);
+}
+
+.brand-wrap{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.logo-mark{
+  width:55px;
+  height:55px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.05);
+}
+
+.logo-mark svg{
+  width:42px;
+  height:42px;
+}
+
+.brand{
+  font-size:30px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:5px;
+}
+
+.brand span{
+  color:var(--c3);
+}
+
+.tagline{
+  width:100%;
+  margin-top:-3px;
+  text-align:center;
+  color:rgba(255,255,255,.68);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* ================= NAV ================= */
+
+.nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  padding:9px 10px;
+  background:var(--c1);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  box-shadow:0 6px 18px rgba(0,0,0,.14);
+}
+
+.nav button{
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.nav button.active{
+  background:var(--c2);
+  color:var(--c1);
+  border-color:var(--c2);
+}
+
+/* ================= MAIN ================= */
+
+main{
+  width:100%;
+  min-height:calc(100vh - 170px);
+  padding:24px max(10px,calc((100% - 1080px)/2)) 55px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--page1) 0%,
+      var(--page1) 50%,
+      var(--page2) 50%,
+      var(--page2) 100%
+    );
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  text-align:center;
+  padding:27px 10px 23px;
+}
+
+.hero h1{
+  margin:0 0 8px;
+  color:var(--c1);
+  font-size:40px;
+}
+
+.hero p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+/* ================= SEARCH ================= */
+
+.search{
+  display:flex;
+  gap:8px;
+  padding:7px;
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+}
+
+.search input{
+  flex:1;
+  min-width:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  padding:13px 12px;
+  font-size:16px;
+  color:var(--text);
+}
+
+.search button{
+  border:0;
+  border-radius:10px;
+  background:var(--c1);
+  color:#fff;
+  padding:0 20px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.status{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.9);
+  color:var(--muted);
+}
+
+/* ================= RESULT ================= */
+
+.card{
+  margin-top:18px;
+  padding:22px;
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+.result-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.word{
+  font-size:31px;
+  font-weight:900;
+  color:var(--c1);
+  word-break:break-word;
+}
+
+.origin{
+  display:inline-block;
+  margin-top:8px;
+  padding:6px 10px;
+  border-radius:9px;
+  background:var(--c1);
+  color:var(--c2);
+  font-size:13px;
+  font-weight:800;
+}
+
+.fav{
+  flex:0 0 44px;
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--c2);
+  border-radius:50%;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:170px minmax(0,1fr);
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.label{
+  color:var(--c1);
+  font-weight:900;
+}
+
+.value{
+  color:var(--text);
+  line-height:1.65;
+  overflow-wrap:anywhere;
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:6px 0 15px;
+}
+
+.pill{
+  padding:8px 12px;
+  border-radius:999px;
+  background:var(--c1);
+  color:var(--c2);
+  font-size:13px;
+  font-weight:900;
+}
+
+.library-filter{
+  width:min(360px,100%);
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:11px;
+  outline:0;
+  background:#fff;
+}
+
+/* ================= LIBRARY ================= */
+
+.list{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:11px;
+}
+
+.item{
+  min-width:0;
+  position:relative;
+  padding:15px;
+  min-height:95px;
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:14px;
+  cursor:pointer;
+  box-shadow:0 5px 16px rgba(0,0,0,.05);
+  transition:.15s;
+}
+
+.item:hover{
+  transform:translateY(-2px);
+  box-shadow:0 9px 22px rgba(0,0,0,.09);
+}
+
+.item b{
+  display:block;
+  padding-right:25px;
+  color:var(--c1);
+  font-size:16px;
+  word-break:break-word;
+}
+
+.item small{
+  display:block;
+  margin-top:6px;
+  color:var(--muted);
+}
+
+.star{
+  position:absolute;
+  top:11px;
+  right:12px;
+  color:var(--c2);
+  font-size:18px;
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+.page-btn{
+  border:1px solid var(--c1);
+  background:#fff;
+  color:var(--c1);
+  min-width:42px;
+  padding:9px 13px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.page-btn.active{
+  background:var(--c1);
+  color:#fff;
+}
+
+.page-btn:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* ================= SETTINGS ================= */
+
+.settings{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.setting{
+  min-width:0;
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 7px 20px rgba(0,0,0,.05);
+}
+
+.setting h3{
+  margin:0 0 7px;
+  color:var(--c1);
+}
+
+.setting p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.theme-setting{
+  grid-column:1/-1;
+}
+
+.theme-title{
+  cursor:pointer;
+}
+
+/* ================= THEMES ================= */
+
+.theme-grid{
+  display:none;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+  margin-top:16px;
+}
+
+.theme-setting.open .theme-grid{
+  display:grid;
+}
+
+.theme-btn{
+  width:100%;
+  min-width:0;
+  min-height:58px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:9px;
+  background:#fff;
+  color:var(--text);
+  font-weight:800;
+  text-align:left;
+  cursor:pointer;
+}
+
+.theme-btn.active{
+  outline:2px solid var(--c2);
+}
+
+.theme-btn span:last-child{
+  min-width:0;
+  word-break:break-word;
+  overflow-wrap:anywhere;
+  line-height:1.2;
+}
+
+.swatch{
+  width:30px;
+  height:30px;
+  min-width:30px;
+  border-radius:8px;
+}
+
+/* ================= FOOTER ================= */
+
+.bottom-band{
+  padding:26px 15px 30px;
+  background:var(--c1);
+  color:var(--c2);
+  text-align:center;
+  border-top:3px solid var(--c2);
+}
+
+.bottom-mark{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+.bottom-line{
+  width:65px;
+  height:3px;
+  margin:10px auto;
+  background:var(--c2);
+}
+
+.bottom-note{
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+  .brand{
+    font-size:25px;
+    letter-spacing:3px;
+  }
+
+  .logo-mark{
+    width:48px;
+    height:48px;
+  }
+
+  .logo-mark svg{
+    width:37px;
+    height:37px;
+  }
+
+  .nav{
+    gap:4px;
+    padding:7px;
+  }
+
+  .nav button{
+    flex:1;
+    min-width:0;
+    padding:9px 4px;
+    font-size:11px;
+  }
+
+  main{
+    padding:15px 9px 40px;
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+
+  .search button{
+    padding:0 14px;
+  }
+
+  .row{
+    grid-template-columns:1fr;
+    gap:5px;
+  }
+
+  .settings{
+    grid-template-columns:1fr;
+  }
+
+  .theme-setting{
+    grid-column:auto;
+  }
+
+  .theme-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .list{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media(max-width:430px){
+
+  .list{
+    grid-template-columns:1fr;
+  }
+
+  .theme-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .theme-btn{
+    font-size:11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="brand-wrap">
+
+    <div class="logo-mark">
+
+      <svg viewBox="0 0 96 96" aria-hidden="true">
+
+        <circle
+          cx="48"
+          cy="48"
+          r="43"
+          fill="none"
+          stroke="var(--c2)"
+          stroke-width="3"
+        />
+
+        <path
+          d="M26 62V34m0 14h18m0 0V29m0 19h26M38 34l10 14 11-18M38 62l10-14 11 14"
+          fill="none"
+          stroke="var(--c2)"
+          stroke-width="4.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+      </svg>
+
+    </div>
+
+    <div class="brand">
+      <span>KÖK</span>TÜRK
+    </div>
+
+    <div class="tagline">
+      Sözcüklerin izini sür
+    </div>
+
+  </div>
+
+</header>
+
+
+<nav class="nav">
+
+  <button data-page="dictionary" class="active">
+    Sözlük
+  </button>
+
+  <button data-page="library">
+    Kütüphane
+  </button>
+
+  <button data-page="favorites">
+    Favoriler
+  </button>
+
+  <button data-page="settings">
+    Ayarlar
+  </button>
+
+</nav>
+
+
+<main>
+
+<!-- ================= SÖZLÜK ================= -->
+
+<section id="dictionary" class="page active">
+
+  <div class="hero">
+
+    <h1>KÖKTÜRK</h1>
+
+    <p>
+      Bir kelime yaz. Anlamını, Türkçesini ve kökenini öğren.
+    </p>
+
+  </div>
+
+
+  <div class="search">
+
+    <input
+      id="searchInput"
+      placeholder="Kelime ara… örn. aba, telefon, bilgisayar"
+      autocomplete="off"
+      spellcheck="false"
+    >
+
+    <button id="searchBtn">
+      Ara
+    </button>
+
+  </div>
+
+
+  <div id="searchStatus" class="status">
+    Sözlük hazırlanıyor…
+  </div>
+
+
+  <div id="result"></div>
+
+</section>
+
+
+<!-- ================= KÜTÜPHANE ================= -->
+
+<section id="library" class="page">
+
+  <div class="hero">
+
+    <h1>Kütüphane</h1>
+
+    <p>
+      Kütüphanedeki bütün kelimeleri görüntüle.
+    </p>
+
+  </div>
+
+
+  <div class="toolbar">
+
+    <div class="pill" id="libraryCount">
+      0 kelime
+    </div>
+
+    <input
+      id="libraryFilter"
+      class="library-filter"
+      placeholder="Kütüphanede filtrele…"
+      autocomplete="off"
+    >
+
+  </div>
+
+
+  <div id="libraryList" class="list"></div>
+
+
+  <div id="libraryPagination" class="pagination"></div>
+
+</section>
+
+
+<!-- ================= FAVORİLER ================= -->
+
+<section id="favorites" class="page">
+
+  <div class="hero">
+
+    <h1>Favoriler</h1>
+
+    <p>
+      Yıldızladığın kelimeler burada.
+    </p>
+
+  </div>
+
+
+  <div class="toolbar">
+
+    <div class="pill" id="favoriteCount">
+      0 favori
+    </div>
+
+  </div>
+
+
+  <div id="favoriteList" class="list"></div>
+
+</section>
+
+
+<!-- ================= AYARLAR ================= -->
+
+<section id="settings" class="page">
+
+  <div class="hero">
+
+    <h1>Ayarlar</h1>
+
+    <p>
+      KÖKTÜRK görünümünü buradan değiştir.
+    </p>
+
+  </div>
+
+
+  <div class="settings">
+
+    <div class="setting theme-setting" id="themeSetting">
+
+      <div class="theme-title" id="themeTitle">
+
+        <h3>
+          Renk temaları
+        </h3>
+
+        <p>
+          21 farklı tema. Açmak için buraya tıkla.
+        </p>
+
+      </div>
+
+
+      <div id="themeGrid" class="theme-grid"></div>
+
+    </div>
+
+
+    <div class="setting">
+
+      <h3>
+        Favoriler
+      </h3>
+
+      <p>
+        Favoriler tarayıcıda saklanır.
+      </p>
+
+    </div>
+
+
+    <div class="setting">
+
+      <h3>
+        Veri
+      </h3>
+
+      <p id="dataInfo">
+        Veri hazırlanıyor…
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer class="bottom-band">
+
+  <div class="bottom-mark">
+    KÖKTÜRK
+  </div>
+
+  <div class="bottom-line"></div>
+
+  <div class="bottom-note">
+    Sözcüklerin izini sür
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   AYARLAR
+========================================================= */
+
+const DATA_URL =
+"https://raw.githubusercontent.com/ahakanacar/turkish-dictionary-dataset-and-statistics/main/turkish_words_database.json";
+
+const TDK_URL =
+"https://sozluk.gov.tr/gts?ara=";
+
+const PAGE_SIZE = 50;
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+let words = [];
+
+let libraryPage = 1;
+
+let libraryFiltered = [];
+
+let tdkCache = new Map();
+
+let favorites = new Set(
+  JSON.parse(
+    localStorage.getItem(
+      "kokturkFavorites"
+    ) || "[]"
+  )
+);
+
+
+/* =========================================================
+   YARDIMCI
+========================================================= */
+
+function tr(value){
+
+  return String(value || "")
+    .toLocaleLowerCase("tr-TR")
+    .normalize("NFKC")
+    .trim();
+
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
+
+}
+
+
+function jsEscape(value){
+
+  return String(value)
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+
+}
+
+
+/* =========================================================
+   DİL ADINI TÜRKÇELEŞTİR
+========================================================= */
+
+function languageTR(value){
+
+  const valueText =
+    String(value || "")
+      .replace(/<[^>]*>/g," ")
+      .replace(/\s+/g," ")
+      .trim();
+
+  if(!valueText){
+    return "";
+  }
+
+  const clean =
+    valueText
+      .replace(/\.$/,"")
+      .trim();
+
+  const map = {
+
+    Turkish:"Türkçe",
+    English:"İngilizce",
+    French:"Fransızca",
+    Persian:"Farsça",
+    Arabic:"Arapça",
+    Italian:"İtalyanca",
+    German:"Almanca",
+    Greek:"Yunanca",
+    Latin:"Latince",
+    Russian:"Rusça",
+    Spanish:"İspanyolca",
+    Portuguese:"Portekizce",
+    Chinese:"Çince",
+    Japanese:"Japonca",
+    Mongolian:"Moğolca"
+
+  };
+
+  if(map[clean]){
+    return map[clean];
+  }
+
+  return clean;
+}
+
+
+/* =========================================================
+   ANLAMI TEMİZLE
+========================================================= */
+
+function cleanMeaning(value){
+
+  let text =
+    String(value || "")
+      .replace(/<[^>]*>/g," ")
+      .replace(/\s+/g," ")
+      .trim();
+
+  text =
+    text.replace(/^►\s*/,"");
+
+  return text;
+}
+
+
+/* =========================================================
+   YEREL VERİ
+========================================================= */
+
+function normalizeRemote(item){
+
+  if(!item || typeof item !== "object"){
+    return null;
+  }
+
+  const word =
+    item.word ||
+    item.kelime ||
+    item.entry ||
+    item.name ||
+    item.lemma ||
+    item.headword;
+
+  if(!word){
+    return null;
+  }
+
+  return {
+
+    kelime:String(word),
+
+    aciklama:String(
+      item.meaning ||
+      item.definition ||
+      item.anlam ||
+      item.aciklama ||
+      item.description ||
+      ""
+    ),
+
+    koken:languageTR(
+      item.origin ||
+      item.source_language ||
+      item.language ||
+      item.lisan ||
+      ""
+    ),
+
+    turkcesi:String(
+      item.turkcesi ||
+      item.turkce ||
+      item.turkish ||
+      item.turkishEquivalent ||
+      ""
+    )
+
+  };
+
+}
+
+
+/* =========================================================
+   TDK'DAN ÇEK
+========================================================= */
+
+async function getTDK(word){
+
+  const key = tr(word);
+
+  if(tdkCache.has(key)){
+    return tdkCache.get(key);
+  }
+
+  try{
+
+    const response =
+      await fetch(
+        TDK_URL +
+        encodeURIComponent(word),
+        {
+          cache:"no-store"
+        }
+      );
+
+    if(!response.ok){
+      return null;
+    }
+
+    const data =
+      await response.json();
+
+    if(!Array.isArray(data) || !data.length){
+      return null;
+    }
+
+
+    /*
+      Önce tam eşleşmeleri bul.
+    */
+
+    const exact =
+      data.filter(
+        item =>
+          tr(item?.madde) === key ||
+          tr(item?.madde_duz) === key
+      );
+
+
+    /*
+      Tam eşleşme varsa sadece onları,
+      yoksa gelen tüm maddeleri kullan.
+    */
+
+    const candidates =
+      (exact.length ? exact : data)
+        .filter(
+          item =>
+            Array.isArray(item?.anlamlarListe) &&
+            item.anlamlarListe.length > 0
+        );
+
+
+    if(!candidates.length){
+      return null;
+    }
+
+
+    /*
+      Anlamı gerçekten bulunan ilk maddeyi seç.
+      "► ..." yönlendirmelerini mümkün olduğunca
+      ikinci plana at.
+    */
+
+    let item =
+      candidates.find(
+        x =>
+          x.anlamlarListe.some(
+            a =>
+              cleanMeaning(a?.anlam) &&
+              !String(a?.anlam || "")
+                .trim()
+                .startsWith("►")
+          )
+      );
+
+
+    if(!item){
+      item = candidates[0];
+    }
+
+
+    /*
+      ANLAM
+      İlk gerçek anlamı al.
+    */
+
+    let anlam = "";
+
+    if(Array.isArray(item.anlamlarListe)){
+
+      const direct =
+        item.anlamlarListe.find(
+          a =>
+            cleanMeaning(a?.anlam) &&
+            !String(a?.anlam || "")
+              .trim()
+              .startsWith("►")
+        );
+
+      if(direct){
+        anlam =
+          cleanMeaning(direct.anlam);
+      }
+
+      /*
+        Doğrudan anlam yoksa ilk anlamı al.
+      */
+
+      if(!anlam){
+
+        const first =
+          item.anlamlarListe.find(
+            a =>
+              cleanMeaning(a?.anlam)
+          );
+
+        anlam =
+          cleanMeaning(first?.anlam);
+      }
+
+    }
+
+
+    /*
+      KÖKEN
+    */
+
+    const koken =
+      languageTR(
+        item.lisan ||
+        item.lisan_html ||
+        ""
+      );
+
+
+    /*
+      TÜRKÇESİ
+      TDK'da gerçekten varsa kullan.
+      Yoksa boş bırakılır ve ekranda
+      "Türkçesi yok" gösterilir.
+    */
+
+    const turkcesi =
+      String(
+        item.turkcesi ||
+        item.turkce ||
+        item.turkce_karsiligi ||
+        ""
+      ).trim();
+
+
+    const result = {
+
+      kelime:
+        item.madde ||
+        item.madde_duz ||
+        word,
+
+      anlam:
+        anlam || "",
+
+      turkcesi:
+        turkcesi || "",
+
+      koken:
+        koken || ""
+
+    };
+
+
+    tdkCache.set(
+      key,
+      result
+    );
+
+
+    return result;
+
+  }
+  catch(error){
+
+    console.warn(
+      "TDK sorgusu başarısız:",
+      error
+    );
+
+    return null;
+
+  }
+
+}
+
+
+/* =========================================================
+   VERİYİ YÜKLE
+========================================================= */
+
+async function loadData(){
+
+  document.getElementById(
+    "searchStatus"
+  ).textContent =
+    "Kelime listesi yükleniyor…";
+
+
+  try{
+
+    const response =
+      await fetch(
+        DATA_URL,
+        {
+          cache:"force-cache"
+        }
+      );
+
+
+    if(!response.ok){
+      throw new Error(
+        "Veri kümesi yüklenemedi"
+      );
+    }
+
+
+    const json =
+      await response.json();
+
+
+    const array =
+      Array.isArray(json)
+        ? json
+        : (
+          json.words ||
+          json.data ||
+          json.entries ||
+          []
+        );
+
+
+    const map = new Map();
+
+
+    for(const item of array){
+
+      const normalized =
+        normalizeRemote(item);
+
+
+      if(!normalized){
+        continue;
+      }
+
+
+      const key =
+        tr(normalized.kelime);
+
+
+      if(!map.has(key)){
+        map.set(
+          key,
+          normalized
+        );
+      }
+
+    }
+
+
+    words =
+      [...map.values()];
+
+
+    words.sort(
+      (a,b) =>
+        tr(a.kelime)
+          .localeCompare(
+            tr(b.kelime),
+            "tr"
+          )
+    );
+
+
+    document.getElementById(
+      "dataInfo"
+    ).textContent =
+      words.length.toLocaleString(
+        "tr-TR"
+      ) +
+      " benzersiz kelime hazır.";
+
+
+    document.getElementById(
+      "searchStatus"
+    ).innerHTML =
+      "Hazır · <b>" +
+      words.length.toLocaleString(
+        "tr-TR"
+      ) +
+      "</b> kelime.";
+
+  }
+  catch(error){
+
+    console.error(error);
+
+
+    /*
+      Uzak liste alınamazsa temel kayıtlar.
+    */
+
+    words = [
+
+      {
+        kelime:"aba",
+        aciklama:"",
+        koken:"",
+        turkcesi:""
+      },
+
+      {
+        kelime:"telefon",
+        aciklama:"",
+        koken:"",
+        turkcesi:""
+      },
+
+      {
+        kelime:"bilgisayar",
+        aciklama:"",
+        koken:"",
+        turkcesi:""
+      },
+
+      {
+        kelime:"doruk",
+        aciklama:"",
+        koken:"",
+        turkcesi:""
+      }
+
+    ];
+
+
+    document.getElementById(
+      "dataInfo"
+    ).textContent =
+      "TDK çevrim içi araması aktif.";
+
+
+    document.getElementById(
+      "searchStatus"
+    ).textContent =
+      "Hazır · TDK araması aktif.";
+
+  }
+
+
+  renderLibrary();
+  renderFavorites();
+
+}
+
+
+/* =========================================================
+   SAYFA
+========================================================= */
+
+function showPage(id){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      page =>
+        page.classList.remove("active")
+    );
+
+
+  const page =
+    document.getElementById(id);
+
+
+  if(page){
+    page.classList.add("active");
+  }
+
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(
+      button =>
+        button.classList.toggle(
+          "active",
+          button.dataset.page === id
+        )
+    );
+
+
+  if(id === "library"){
+    renderLibrary();
+  }
+
+
+  if(id === "favorites"){
+    renderFavorites();
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+document
+  .querySelectorAll(".nav button")
+  .forEach(
+    button =>
+      button.addEventListener(
+        "click",
+        () =>
+          showPage(
+            button.dataset.page
+          )
+      )
+  );
+
+
+/* =========================================================
+   ARAMA
+========================================================= */
+
+async function searchWord(){
+
+  const raw =
+    document.getElementById(
+      "searchInput"
+    ).value.trim();
+
+
+  if(!raw){
+    return;
+  }
+
+
+  const output =
+    document.getElementById(
+      "result"
+    );
+
+
+  output.innerHTML = `
+    <div class="card">
+
+      <div class="status">
+        Sözlükten gerçek bilgiler getiriliyor…
+      </div>
+
+    </div>
+  `;
+
+
+  /*
+    Önce TDK.
+  */
+
+  const tdk =
+    await getTDK(raw);
+
+
+  if(tdk){
+
+    const key =
+      tr(tdk.kelime);
+
+
+    const existing =
+      words.find(
+        w =>
+          tr(w.kelime) === key
+      );
+
+
+    if(!existing){
+
+      words.push({
+
+        kelime:tdk.kelime,
+
+        aciklama:
+          tdk.anlam || "",
+
+        turkcesi:
+          tdk.turkcesi || "",
+
+        koken:
+          tdk.koken || ""
+
+      });
+
+    }
+    else{
+
+      if(tdk.anlam){
+        existing.aciklama =
+          tdk.anlam;
+      }
+
+      if(tdk.turkcesi){
+        existing.turkcesi =
+          tdk.turkcesi;
+      }
+
+      if(tdk.koken){
+        existing.koken =
+          tdk.koken;
+      }
+
+    }
+
+
+    renderResult(tdk);
+
+    return;
+
+  }
+
+
+  /*
+    TDK çalışmazsa yerel veri.
+  */
+
+  const local =
+    words.find(
+      w =>
+        tr(w.kelime) === tr(raw)
+    );
+
+
+  if(local){
+
+    renderLocalResult(local);
+
+    return;
+
+  }
+
+
+  /*
+    Benzer kelimeler.
+  */
+
+  const similar =
+    words
+      .filter(
+        w =>
+          tr(w.kelime)
+            .includes(
+              tr(raw)
+            )
+      )
+      .slice(0,8);
+
+
+  if(similar.length){
+
+    output.innerHTML = `
+
+      <div class="card">
+
+        <div class="label">
+          Benzer sonuçlar
+        </div>
+
+
+        <div
+          class="list"
+          style="margin-top:12px"
+        >
+
+          ${similar.map(
+            w => `
+
+              <div
+                class="item"
+                data-open="${encodeURIComponent(w.kelime)}"
+              >
+
+                <span class="star">
+                  ${
+                    favorites.has(
+                      tr(w.kelime)
+                    )
+                      ? "★"
+                      : "☆"
+                  }
+                </span>
+
+                <b>
+                  ${escapeHtml(w.kelime)}
+                </b>
+
+                <small>
+                  ${
+                    escapeHtml(
+                      w.koken ||
+                      "Türkçe"
+                    )
+                  }
+                </small>
+
+              </div>
+
+            `
+          ).join("")}
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+  else{
+
+    output.innerHTML = `
+
+      <div class="card">
+
+        <div class="word">
+          ${escapeHtml(raw)}
+        </div>
+
+        <div class="row">
+
+          <div class="label">
+            Anlamı
+          </div>
+
+          <div class="value">
+            Anlamı bulunamadı.
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="label">
+            Türkçesi
+          </div>
+
+          <div class="value">
+            Türkçesi yok
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="label">
+            Kökeni
+          </div>
+
+          <div class="value">
+            Türkçe
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   SONUÇ RENDER
+========================================================= */
+
+function renderResult(item){
+
+  /*
+    ANLAM
+  */
+
+  const anlam =
+    String(item.anlam || "")
+      .trim();
+
+
+  /*
+    KÖKEN
+  */
+
+  const koken =
+    String(item.koken || "")
+      .trim();
+
+
+  /*
+    TÜRKÇESİ
+  */
+
+  const turkcesi =
+    String(item.turkcesi || "")
+      .trim();
+
+
+  let html = `
+
+    <div class="card">
+
+      <div class="result-head">
+
+        <div>
+
+          <div class="word">
+            ${escapeHtml(item.kelime)}
+          </div>
+
+          <div class="origin">
+
+            ${escapeHtml(
+              koken || "Türkçe"
+            )}
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="fav"
+          type="button"
+          onclick="toggleFavorite('${jsEscape(item.kelime)}')"
+        >
+
+          ${
+            favorites.has(
+              tr(item.kelime)
+            )
+              ? "★"
+              : "☆"
+          }
+
+        </button>
+
+      </div>
+
+  `;
+
+
+  /*
+    ANLAM HER ZAMAN GÖSTERİLİR.
+  */
+
+  html += `
+
+    <div
+      class="row"
+      style="margin-top:18px"
+    >
+
+      <div class="label">
+        Anlamı
+      </div>
+
+      <div class="value">
+
+        ${
+          escapeHtml(
+            anlam ||
+            "Anlamı bulunamadı."
+          )
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  /*
+    TÜRKÇESİ
+  */
+
+  html += `
+
+    <div class="row">
+
+      <div class="label">
+        Türkçesi
+      </div>
+
+      <div class="value">
+
+        ${
+          turkcesi
+            ? escapeHtml(turkcesi)
+            : "Türkçesi yok"
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  /*
+    KÖKEN
+  */
+
+  html += `
+
+    <div class="row">
+
+      <div class="label">
+        Kökeni
+      </div>
+
+      <div class="value">
+
+        ${
+          escapeHtml(
+            koken || "Türkçe"
+          )
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  html += `
+    </div>
+  `;
+
+
+  document.getElementById(
+    "result"
+  ).innerHTML = html;
+
+}
+
+
+/* =========================================================
+   YEREL SONUÇ
+========================================================= */
+
+function renderLocalResult(item){
+
+  renderResult({
+
+    kelime:
+      item.kelime,
+
+    anlam:
+      item.aciklama ||
+      item.meaning ||
+      item.definition ||
+      "",
+
+    turkcesi:
+      item.turkcesi ||
+      "",
+
+    koken:
+      item.koken ||
+      ""
+
+  });
+
+}
+
+
+/* =========================================================
+   FAVORİ
+========================================================= */
+
+function toggleFavorite(word){
+
+  const key =
+    tr(word);
+
+
+  if(favorites.has(key)){
+
+    favorites.delete(key);
+
+  }
+  else{
+
+    favorites.add(key);
+
+  }
+
+
+  localStorage.setItem(
+    "kokturkFavorites",
+    JSON.stringify(
+      [...favorites]
+    )
+  );
+
+
+  renderFavorites();
+
+
+  const button =
+    document.querySelector(
+      ".fav"
+    );
+
+
+  if(button){
+
+    button.textContent =
+      favorites.has(key)
+        ? "★"
+        : "☆";
+
+  }
+
+
+  renderLibrary();
+
+}
+
+
+/* =========================================================
+   FAVORİLERİ GÖSTER
+========================================================= */
+
+function renderFavorites(){
+
+  const list =
+    document.getElementById(
+      "favoriteList"
+    );
+
+
+  const favoriteWords =
+    words.filter(
+      w =>
+        favorites.has(
+          tr(w.kelime)
+        )
+    );
+
+
+  document.getElementById(
+    "favoriteCount"
+  ).textContent =
+    favoriteWords.length +
+    " favori";
+
+
+  if(!favoriteWords.length){
+
+    list.innerHTML = `
+
+      <div class="card">
+
+        Henüz favori kelime eklemedin.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  list.innerHTML =
+    favoriteWords
+      .map(
+        w => `
+
+          <div
+            class="item"
+            data-open="${encodeURIComponent(w.kelime)}"
+          >
+
+            <span class="star">
+              ★
+            </span>
+
+            <b>
+              ${escapeHtml(w.kelime)}
+            </b>
+
+            <small>
+              ${
+                escapeHtml(
+                  w.koken ||
+                  "Türkçe"
+                )
+              }
+            </small>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   KÜTÜPHANE
+========================================================= */
+
+function getLibrary(){
+
+  const filter =
+    tr(
+      document.getElementById(
+        "libraryFilter"
+      ).value
+    );
+
+
+  const result =
+    words.filter(
+      w =>
+        !filter ||
+        tr(w.kelime)
+          .includes(filter)
+    );
+
+
+  result.sort(
+    (a,b) =>
+      tr(a.kelime)
+        .localeCompare(
+          tr(b.kelime),
+          "tr"
+        )
+  );
+
+
+  return result;
+
+}
+
+
+function renderLibrary(){
+
+  libraryFiltered =
+    getLibrary();
+
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        libraryFiltered.length /
+        PAGE_SIZE
+      )
+    );
+
+
+  if(libraryPage > totalPages){
+
+    libraryPage =
+      totalPages;
+
+  }
+
+
+  const start =
+    (libraryPage - 1) *
+    PAGE_SIZE;
+
+
+  /*
+    HER SAYFADA TAM 50 KELİME.
+  */
+
+  const visible =
+    libraryFiltered.slice(
+      start,
+      start + PAGE_SIZE
+    );
+
+
+  document.getElementById(
+    "libraryCount"
+  ).textContent =
+    libraryFiltered
+      .length
+      .toLocaleString("tr-TR") +
+    " kelime";
+
+
+  document.getElementById(
+    "libraryList"
+  ).innerHTML =
+    visible
+      .map(
+        w => `
+
+          <div
+            class="item"
+            data-open="${encodeURIComponent(w.kelime)}"
+          >
+
+            <span class="star">
+
+              ${
+                favorites.has(
+                  tr(w.kelime)
+                )
+                  ? "★"
+                  : "☆"
+              }
+
+            </span>
+
+
+            <b>
+              ${escapeHtml(w.kelime)}
+            </b>
+
+
+            <small>
+
+              ${
+                escapeHtml(
+                  w.koken ||
+                  "Türkçe"
+                )
+              }
+
+            </small>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+
+  renderPagination(
+    totalPages
+  );
+
+}
+
+
+/* =========================================================
+   SAYFALAMA
+   SADECE NUMARALAR
+   ‹ VE › YOK
+========================================================= */
+
+function renderPagination(totalPages){
+
+  const box =
+    document.getElementById(
+      "libraryPagination"
+    );
+
+
+  if(totalPages <= 1){
+
+    box.innerHTML = "";
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  let start =
+    Math.max(
+      1,
+      libraryPage - 3
+    );
+
+
+  let end =
+    Math.min(
+      totalPages,
+      libraryPage + 3
+    );
+
+
+  for(
+    let i = start;
+    i <= end;
+    i++
+  ){
+
+    html += `
+
+      <button
+        class="page-btn ${
+          i === libraryPage
+            ? "active"
+            : ""
+        }"
+        onclick="changeLibraryPage(${i})"
+      >
+
+        ${i}
+
+      </button>
+
+    `;
+
+  }
+
+
+  box.innerHTML =
+    html;
+
+}
+
+
+function changeLibraryPage(page){
+
+  libraryPage =
+    Number(page);
+
+
+  renderLibrary();
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   KÜTÜPHANE FİLTRE
+========================================================= */
+
+document
+  .getElementById(
+    "libraryFilter"
+  )
+  .addEventListener(
+    "input",
+    () => {
+
+      libraryPage = 1;
+
+      renderLibrary();
+
+    }
+  );
+
+
+/* =========================================================
+   KELİME KARTI
+========================================================= */
+
+document.addEventListener(
+  "click",
+  event => {
+
+    const element =
+      event.target.closest(
+        "[data-open]"
+      );
+
+
+    if(!element){
+      return;
+    }
+
+
+    const key =
+      decodeURIComponent(
+        element.dataset.open
+      );
+
+
+    showPage(
+      "dictionary"
+    );
+
+
+    document.getElementById(
+      "searchInput"
+    ).value = key;
+
+
+    searchWord();
+
+  }
+);
+
+
+/* =========================================================
+   ARAMA BUTONU
+========================================================= */
+
+document.getElementById(
+  "searchBtn"
+).addEventListener(
+  "click",
+  searchWord
+);
+
+
+document.getElementById(
+  "searchInput"
+).addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Enter"){
+
+      searchWord();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   TEMALAR
+========================================================= */
+
+const themes = {
+
+  1:["Lacivert + Altın","#07152f","#d7b86c","#f2dda5"],
+
+  2:["Yeşil + Krem","#173b2b","#d9c9a3","#f4ead4"],
+
+  3:["Bordo + Şampanya","#4a1522","#d8bd8f","#f7ead3"],
+
+  4:["Petrol + Bakır","#123a42","#b97a56","#e4b08c"],
+
+  5:["Gece Mavisi + Gümüş","#0b1832","#aeb9c7","#eef2f6"],
+
+  6:["Mor + Altın","#2b163e","#d8b45e","#f3df9c"],
+
+  7:["Zümrüt + Fildişi","#123f32","#e8dfc8","#fff8e6"],
+
+  8:["Kahve + Bej","#3a251b","#d2ad78","#f1ddbf"],
+
+  9:["Mavi + Turkuaz","#0c3554","#75d7d1","#d9fbf6"],
+
+  10:["Terracotta + Kum","#7a3f32","#e4c7a6","#faebd8"],
+
+  11:["Türkiye Rengi","#b20f2e","#ffffff","#fff6f7"],
+
+  12:["Koyu Mor + Pembe","#35164f","#e3a8c9","#f8dcea"],
+
+  13:["Lacivert + Turkuaz","#082b45","#70d5d0","#d9faf7"],
+
+  14:["Siyah + Altın","#111111","#d7b86c","#f5e4af"],
+
+  15:["Turuncu + Krem","#7a3d0b","#e5b56f","#fff0d5"],
+
+  16:["Mavi + Gümüş","#153a68","#c1cad6","#edf2f7"],
+
+  17:["Yeşil + Altın","#17472f","#d7b86c","#f4e8c4"],
+
+  18:["Bordo + Gül","#50172a","#dca5b8","#f7e0e7"],
+
+  19:["Turkuaz + Kum","#0d4b50","#d8bf8b","#f4e9cf"],
+
+  20:["Lila + Beyaz","#3d315f","#c8bce3","#eee9fa"],
+
+  21:["Koyu Kırmızı + Beyaz","#8f1025","#ffffff","#fff5f6"]
+
+};
+
+
+/* =========================================================
+   TEMA UYGULA
+========================================================= */
+
+function applyTheme(id){
+
+  const theme =
+    themes[id] ||
+    themes[1];
+
+
+  const root =
+    document.documentElement;
+
+
+  root.style.setProperty(
+    "--c1",
+    theme[1]
+  );
+
+
+  root.style.setProperty(
+    "--c2",
+    theme[2]
+  );
+
+
+  root.style.setProperty(
+    "--c3",
+    theme[3]
+  );
+
+
+  root.style.setProperty(
+    "--page1",
+    theme[1]
+  );
+
+
+  root.style.setProperty(
+    "--page2",
+    theme[2]
+  );
+
+
+  root.style.setProperty(
+    "--header1",
+    theme[1]
+  );
+
+
+  root.style.setProperty(
+    "--header2",
+    theme[2]
+  );
+
+
+  localStorage.setItem(
+    "kokturkTheme",
+    String(id)
+  );
+
+
+  renderThemes(id);
+
+}
+
+
+/* =========================================================
+   TEMA LİSTESİ
+========================================================= */
+
+function renderThemes(activeId){
+
+  const grid =
+    document.getElementById(
+      "themeGrid"
+    );
+
+
+  grid.innerHTML =
+    Object.entries(themes)
+      .map(
+        ([id,t]) => `
+
+          <button
+            type="button"
+            class="theme-btn ${
+              Number(id) ===
+              Number(activeId)
+                ? "active"
+                : ""
+            }"
+            data-theme-id="${id}"
+          >
+
+            <span
+              class="swatch"
+              style="
+                background:
+                linear-gradient(
+                  135deg,
+                  ${t[1]} 0 50%,
+                  ${t[2]} 50% 100%
+                );
+              "
+            ></span>
+
+
+            <span>
+              ${escapeHtml(t[0])}
+            </span>
+
+          </button>
+
+        `
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   TEMA AÇ / KAPAT
+========================================================= */
+
+document.getElementById(
+  "themeTitle"
+).addEventListener(
+  "click",
+  event => {
+
+    event.stopPropagation();
+
+
+    document
+      .getElementById(
+        "themeSetting"
+      )
+      .classList.toggle(
+        "open"
+      );
+
+  }
+);
+
+
+/* =========================================================
+   TEMA SEÇ
+========================================================= */
+
+document.getElementById(
+  "themeGrid"
+).addEventListener(
+  "click",
+  event => {
+
+    const button =
+      event.target.closest(
+        ".theme-btn"
+      );
+
+
+    if(!button){
+      return;
+    }
+
+
+    event.preventDefault();
+
+    event.stopPropagation();
+
+
+    const id =
+      Number(
+        button.dataset.themeId
+      );
+
+
+    if(themes[id]){
+
+      applyTheme(id);
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   BAŞLAT
+========================================================= */
+
+const savedTheme =
+  Number(
+    localStorage.getItem(
+      "kokturkTheme"
+    ) || 1
+  );
+
+
+const initialTheme =
+  themes[savedTheme]
+    ? savedTheme
+    : 1;
+
+
+renderThemes(
+  initialTheme
+);
+
+
+applyTheme(
+  initialTheme
+);
+
+
+loadData();
+
+</script>
+
+</body>
+</html>
