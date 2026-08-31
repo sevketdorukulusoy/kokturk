@@ -1,0 +1,2 @@
+# kokturk
+koktürk sözlük uygulaması
